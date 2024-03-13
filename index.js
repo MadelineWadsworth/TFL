@@ -18,3 +18,5 @@ port.pope(parser);
 parser.on('data', function(data){
     console.log(data); 
 }); 
+
+console.log("hello world"); 
