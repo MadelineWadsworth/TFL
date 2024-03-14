@@ -13,7 +13,7 @@ var port = new SerialPort('/dev/cu.usmodem14102', {
     flowControl: false
 }); 
 
-port.pope(parser);
+port.pipe(parser);
 
 parser.on('data', function(data){
     console.log(data); 
