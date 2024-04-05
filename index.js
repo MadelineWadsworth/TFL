@@ -22,6 +22,8 @@
 // console.log("hello world");
 //
 
+//testing github push
+
 // Import SerialPort and ReadlineParser
 const { SerialPort } = require('serialport');
 const { ReadlineParser } = require('@serialport/parser-readline');
