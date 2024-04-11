@@ -4,7 +4,7 @@
 // .then((data) => console.log(data))
 // .catch(err => console.log(err));
 
-const sp = require('serialport');
+var sp = require('serialport');
 
 sp.list()
   .then((ports) => {
@@ -16,3 +16,4 @@ sp.list()
   .catch((err) => {
     console.error('Error listing serial ports:', err);
   });
+  

@@ -26,6 +26,8 @@
 
 // Import SerialPort and ReadlineParser
 const { SerialPort } = require('serialport');
+const http = require('http');
+
 const { ReadlineParser } = require('@serialport/parser-readline');
 let WebSocketServer = require('ws').Server;
 // Get the port name from the command line
@@ -33,7 +35,6 @@ let portName = '/dev/tty.usbmodem14202';
 
 // Create a new instance of SerialPort
 let myPort = new SerialPort({ path: portName, baudRate: 9600 });
-
 
 // Instantiate a ReadlineParser
 const parser = myPort.pipe(new ReadlineParser({ delimiter: '\r\n' }));
@@ -60,6 +61,7 @@ function showError(error) {
 const SERVER_PORT = 8081;               // port number for the webSocket server
 let wss = new WebSocketServer({port: SERVER_PORT}); // the webSocket server
 let connections = new Array;          // list of connections to the server
+
 wss.on('connection', handleConnection);
 
 function handleConnection(client) {
@@ -73,4 +75,25 @@ function handleConnection(client) {
     let position = connections.indexOf(client); // get the client's position in the array
     connections.splice(position, 1); // and delete it from the array
   });
+}
+
+function sendToSerial(data) {
+  console.log("sending to serial: " + data);
+  myPort.write(data);
+}
+
+//This function broadcasts messages to all webSocket clients
+function broadcast(data) {
+  for (myConnection in connections) {
+    connections[myConnection].send(data);
+  }
+}
+
+function readSerialData(data) {
+  console.log(data);
+  // if there are webSocket connections, send the serial data
+  // to all of them:
+  if (connections.length > 0) {
+    broadcast(data);
+  }
 }
