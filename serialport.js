@@ -16,4 +16,3 @@ sp.list()
   .catch((err) => {
     console.error('Error listing serial ports:', err);
   });
-  

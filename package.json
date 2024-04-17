@@ -11,11 +11,13 @@
     "license": "ISC",
     "dependencies": {
         "@serialport/list": "^12.0.0",
+        "@socket.io/component-emitter": "^3.1.1",
         "express": "^4.19.2",
         "http": "^0.0.1-security",
         "node": "^18.20.1",
         "npm": "^10.5.0",
         "serialport": "^12.0.0",
+        "socket.io": "^4.7.5",
         "websocket": "^1.0.34",
         "ws": "^8.16.0"
     }
