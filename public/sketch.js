@@ -6,7 +6,7 @@ function setup() {
   // Make a new div and position it at 10, 10
   //text = createDiv("Sensor reading:");
   //text.position(10, 10);
-  createCanvas(400,400);
+   createCanvas(windowWidth, windowHeight);
 
   // Handle incoming messages
   socket.on('data', function(data) {
@@ -24,14 +24,15 @@ function setup() {
 //need to convert the serial monitor data to only display the integer value (not "soil moisture")
 //so that we can parse that data as an integer
 function draw(){
-  background(0);
-  fill('white');
-  ellipse(50, 50, 80, 80);
-  fill("pink");
-  textAlign(CENTER, CENTER);  // Align text to be centered in the ellipse
- textSize(16);               // Set text size
+  background(109, 135, 112);
+  textSize(45);
+  fill(255)
+  text("Root Radar", 20, 60)
+  textAlign(CENTER, CENTER);
 
- textDisplay = text(soilData, 50, 50);
+  textSize(25);
+  fill(255)
+ textDisplay = text("Soil Moisture: " + soilData, 120, 120);
 //  text.html("Sensor reading: " + soilData);
   console.log(soilData);
 }
